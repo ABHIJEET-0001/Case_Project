@@ -31,20 +31,20 @@ export default function Settings() {
   ];
 
   return (
-    <div className="fade-in flex flex-col h-full" style={{ background: "#F8F9FB" }}>
-      <div className="px-8 py-4" style={{ background: "white", borderBottom: "1px solid #E5E7EB" }}>
-        <h1 className="font-semibold text-gray-900" style={{ fontSize: "17px", letterSpacing: "-0.3px" }}>Settings</h1>
-        <p className="text-xs text-gray-400 mt-0.5">Manage your CaseLens account, court configuration, and AI preferences</p>
+    <div className="page-shell fade-in">
+      <div className="page-head">
+        <h1 className="text-xl font-extrabold tracking-tight text-slate-900">Settings</h1>
+        <p className="mt-1 text-xs text-slate-500">Manage your CaseLens account, court configuration, and AI preferences</p>
       </div>
 
-      <div className="flex flex-1 overflow-hidden">
+      <div className="flex flex-1 flex-col overflow-hidden md:flex-row">
         {/* Left nav */}
-        <div className="w-48 flex-shrink-0 p-3" style={{ background: "white", borderRight: "1px solid #F3F4F6" }}>
+        <div className="flex w-full flex-shrink-0 gap-1 overflow-x-auto border-b border-slate-100 bg-white p-3 md:w-52 md:flex-col md:overflow-visible md:border-r md:border-b-0">
           {sections.map(s => (
             <button
               key={s.id}
               onClick={() => setActiveSection(s.id)}
-              className="w-full text-left px-3 py-2 rounded-xl text-xs font-medium mb-0.5 transition-colors"
+              className="rounded-xl px-3 py-2 text-left text-xs font-medium transition-colors md:mb-0.5 md:w-full"
               style={{
                 background: activeSection === s.id ? "#F3F4F6" : "transparent",
                 color: activeSection === s.id ? "#111827" : "#6B7280",
@@ -57,11 +57,11 @@ export default function Settings() {
         </div>
 
         {/* Content */}
-        <div className="flex-1 overflow-y-auto px-8 py-6">
+        <div className="page-content flex-1" style={{ paddingTop: "16px" }}>
           {activeSection === "profile" && (
-            <div className="max-w-xl flex flex-col gap-5">
+            <div className="mx-auto flex max-w-3xl flex-col gap-5">
               {/* Avatar */}
-              <div className="rounded-2xl p-5" style={{ background: "white", border: "1px solid #E5E7EB" }}>
+              <div className="surface-elevated rounded-2xl p-5">
                 <h3 className="font-semibold text-gray-900 text-sm mb-4">Profile</h3>
                 <div className="flex items-center gap-4 mb-5">
                   <div className="w-14 h-14 rounded-2xl flex items-center justify-center font-bold text-xl" style={{ background: "linear-gradient(135deg, #6366F1, #8B5CF6)", color: "white" }}>
@@ -75,7 +75,7 @@ export default function Settings() {
                     Change Photo
                   </button>
                 </div>
-                <div className="grid gap-3" style={{ gridTemplateColumns: "1fr 1fr" }}>
+                <div className="grid gap-3 md:grid-cols-2">
                   {[
                     { label: "Full Name", value: "Justice Rajiv Sharma" },
                     { label: "Judge ID", value: "DHC-JDG-0042" },
@@ -97,7 +97,7 @@ export default function Settings() {
               </div>
 
               {/* Court */}
-              <div className="rounded-2xl p-5" style={{ background: "white", border: "1px solid #E5E7EB" }}>
+              <div className="surface-elevated rounded-2xl p-5">
                 <h3 className="font-semibold text-gray-900 text-sm mb-4">Court Configuration</h3>
                 <div className="grid gap-3">
                   {[
@@ -118,8 +118,8 @@ export default function Settings() {
           )}
 
           {activeSection === "ai" && (
-            <div className="max-w-xl flex flex-col gap-5">
-              <div className="rounded-2xl p-5" style={{ background: "white", border: "1px solid #E5E7EB" }}>
+            <div className="mx-auto flex max-w-3xl flex-col gap-5">
+              <div className="surface-elevated rounded-2xl p-5">
                 <h3 className="font-semibold text-gray-900 text-sm mb-1">AI Model</h3>
                 <p className="text-xs text-gray-400 mb-4">Choose the AI model powering case prioritization and legal analysis.</p>
                 <div className="flex flex-col gap-3">
@@ -149,7 +149,7 @@ export default function Settings() {
                 </div>
               </div>
 
-              <div className="rounded-2xl p-5" style={{ background: "white", border: "1px solid #E5E7EB" }}>
+              <div className="surface-elevated rounded-2xl p-5">
                 <h3 className="font-semibold text-gray-900 text-sm mb-4">AI Features</h3>
                 <div className="flex flex-col gap-4">
                   {[
@@ -170,8 +170,8 @@ export default function Settings() {
           )}
 
           {activeSection === "notifications" && (
-            <div className="max-w-xl flex flex-col gap-5">
-              <div className="rounded-2xl p-5" style={{ background: "white", border: "1px solid #E5E7EB" }}>
+            <div className="mx-auto flex max-w-3xl flex-col gap-5">
+              <div className="surface-elevated rounded-2xl p-5">
                 <h3 className="font-semibold text-gray-900 text-sm mb-4">Channels</h3>
                 <div className="flex flex-col gap-4">
                   {[
@@ -189,7 +189,7 @@ export default function Settings() {
                 </div>
               </div>
 
-              <div className="rounded-2xl p-5" style={{ background: "white", border: "1px solid #E5E7EB" }}>
+              <div className="surface-elevated rounded-2xl p-5">
                 <h3 className="font-semibold text-gray-900 text-sm mb-4">Alert Thresholds</h3>
                 <div className="flex flex-col gap-3">
                   <div>
@@ -228,8 +228,8 @@ export default function Settings() {
           )}
 
           {activeSection === "security" && (
-            <div className="max-w-xl flex flex-col gap-5">
-              <div className="rounded-2xl p-5" style={{ background: "white", border: "1px solid #E5E7EB" }}>
+            <div className="mx-auto flex max-w-3xl flex-col gap-5">
+              <div className="surface-elevated rounded-2xl p-5">
                 <h3 className="font-semibold text-gray-900 text-sm mb-4">Authentication</h3>
                 <div className="flex flex-col gap-3">
                   <div className="flex items-center justify-between py-2.5" style={{ borderBottom: "1px solid #F9FAFB" }}>
@@ -265,7 +265,7 @@ export default function Settings() {
           )}
 
           {activeSection === "integrations" && (
-            <div className="max-w-xl flex flex-col gap-4">
+            <div className="mx-auto flex max-w-3xl flex-col gap-4">
               {[
                 { name: "NIC e-Courts", desc: "National Informatics Centre case management integration.", status: "connected", color: "#10B981" },
                 { name: "SCI CIS", desc: "Supreme Court of India Case Information System — precedent sync.", status: "connected", color: "#10B981" },
@@ -273,7 +273,7 @@ export default function Settings() {
                 { name: "LIMBS", desc: "Legal Information Management & Briefing System (MoL&J).", status: "pending", color: "#F59E0B" },
                 { name: "FASTER", desc: "Supreme Court FASTER system for bail orders.", status: "disconnected", color: "#EF4444" },
               ].map(integration => (
-                <div key={integration.name} className="rounded-2xl p-4 flex items-center gap-4" style={{ background: "white", border: "1px solid #E5E7EB" }}>
+                <div key={integration.name} className="surface-elevated flex items-center gap-4 rounded-2xl p-4">
                   <div className="w-10 h-10 rounded-xl flex items-center justify-center flex-shrink-0" style={{ background: "#F3F4F6" }}>
                     <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
                       <rect x="2" y="2" width="6" height="6" rx="1.5" stroke="#9CA3AF" strokeWidth="1.3"/>

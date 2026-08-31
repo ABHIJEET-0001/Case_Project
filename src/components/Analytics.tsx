@@ -45,26 +45,25 @@ export default function Analytics() {
   let cumPct = 0;
 
   return (
-    <div className="fade-in flex flex-col h-full overflow-y-auto" style={{ background: "#F8F9FB" }}>
-      {/* Header */}
-      <div className="px-8 py-4" style={{ background: "white", borderBottom: "1px solid #E5E7EB" }}>
-        <div className="flex items-center justify-between">
+    <div className="page-shell fade-in">
+      <div className="page-head">
+        <div className="flex flex-col gap-3 md:flex-row md:items-center md:justify-between">
           <div>
-            <h1 className="font-semibold text-gray-900" style={{ fontSize: "17px", letterSpacing: "-0.3px" }}>Analytics</h1>
-            <p className="text-xs text-gray-400 mt-0.5">Delhi High Court · Division Bench II · {period}</p>
+            <h1 className="text-xl font-extrabold tracking-tight text-slate-900">Analytics</h1>
+            <p className="mt-1 text-xs text-slate-500">Delhi High Court · Division Bench II · {period}</p>
           </div>
-          <div className="flex items-center gap-1.5">
+          <div className="flex flex-wrap items-center gap-1.5">
             {periods.map(p => (
               <button
                 key={p}
                 onClick={() => setPeriod(p)}
-                className="px-3 py-1.5 rounded-xl text-xs font-medium transition-all"
-                style={{ background: period === p ? "#1D2330" : "white", color: period === p ? "white" : "#6B7280", border: `1px solid ${period === p ? "#1D2330" : "#E5E7EB"}` }}
+                className="rounded-xl px-3 py-1.5 text-xs font-semibold transition-all"
+                style={{ background: period === p ? "#0f172a" : "white", color: period === p ? "white" : "#64748b", border: `1px solid ${period === p ? "#0f172a" : "#e2e8f0"}` }}
               >
                 {p}
               </button>
             ))}
-            <button className="flex items-center gap-1.5 ml-2 px-3 py-1.5 rounded-xl text-xs font-medium" style={{ color: "#6B7280", background: "white", border: "1px solid #E5E7EB" }}>
+            <button className="ml-2 flex items-center gap-1.5 rounded-xl border border-slate-200 bg-white px-3 py-1.5 text-xs font-semibold text-slate-600">
               <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
                 <path d="M2 4H10M3.5 7H8.5M5 10H7" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round"/>
               </svg>
@@ -74,9 +73,9 @@ export default function Analytics() {
         </div>
       </div>
 
-      <div className="px-8 py-5 flex flex-col gap-5">
+      <div className="page-content flex flex-col gap-5">
         {/* KPI Row */}
-        <div className="grid grid-cols-5 gap-4">
+        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 xl:grid-cols-5">
           {[
             { label: "Total Cases", value: "247", sub: "Active docket", color: "#3B82F6", trend: null },
             { label: "Disposed YTD", value: "184", sub: "FY 2025–26", color: "#10B981", trend: "+12%" },
@@ -84,7 +83,7 @@ export default function Analytics() {
             { label: "Disposal Rate", value: "68%", sub: "↑ 6% vs last FY", color: "#F59E0B", trend: "+6pp" },
             { label: "Avg. Pendency", value: "4.2 yr", sub: "↓ 0.3 yr vs last", color: "#8B5CF6", trend: "-7%" },
           ].map((stat, i) => (
-            <div key={i} className="rounded-2xl p-4" style={{ background: "white", border: "1px solid #E5E7EB" }}>
+            <div key={i} className="surface-elevated rounded-2xl p-4">
               <div className="flex items-center justify-between mb-2">
                 <span className="text-xs text-gray-400 uppercase tracking-wider" style={{ fontSize: "10px" }}>{stat.label}</span>
                 {stat.trend && (
@@ -104,9 +103,9 @@ export default function Analytics() {
         </div>
 
         {/* Charts row */}
-        <div className="grid gap-5" style={{ gridTemplateColumns: "1fr 1fr" }}>
+        <div className="grid gap-5 xl:grid-cols-2">
           {/* Bar chart */}
-          <div className="rounded-2xl p-5" style={{ background: "white", border: "1px solid #E5E7EB" }}>
+          <div className="surface-elevated rounded-2xl p-5">
             <div className="flex items-center justify-between mb-5">
               <div>
                 <h3 className="font-semibold text-gray-900 text-sm">Institution vs. Disposal</h3>
@@ -158,12 +157,12 @@ export default function Analytics() {
           </div>
 
           {/* Donut chart */}
-          <div className="rounded-2xl p-5" style={{ background: "white", border: "1px solid #E5E7EB" }}>
+          <div className="surface-elevated rounded-2xl p-5">
             <div className="mb-4">
               <h3 className="font-semibold text-gray-900 text-sm">Case Type Breakdown</h3>
               <p className="text-xs text-gray-400 mt-0.5">247 total cases by category</p>
             </div>
-            <div className="flex items-center gap-6">
+            <div className="flex flex-col items-start gap-5 sm:flex-row sm:items-center sm:gap-6">
               <svg width="112" height="112" viewBox="0 0 112 112" style={{ flexShrink: 0, overflow: "visible" }}>
                 {caseTypeData.map((item, i) => {
                   const startPct = cumPct;
@@ -220,9 +219,9 @@ export default function Analytics() {
           </div>
         </div>
 
-        <div className="grid gap-5" style={{ gridTemplateColumns: "1fr 1fr" }}>
+        <div className="grid gap-5 xl:grid-cols-2">
           {/* Pendency brackets */}
-          <div className="rounded-2xl p-5" style={{ background: "white", border: "1px solid #E5E7EB" }}>
+          <div className="surface-elevated rounded-2xl p-5">
             <h3 className="font-semibold text-gray-900 text-sm mb-1">Age Bracket Distribution</h3>
             <p className="text-xs text-gray-400 mb-5">Pendency of cases by age</p>
             <div className="flex flex-col gap-3.5">
@@ -255,7 +254,7 @@ export default function Analytics() {
           </div>
 
           {/* Bench performance */}
-          <div className="rounded-2xl p-5" style={{ background: "white", border: "1px solid #E5E7EB" }}>
+          <div className="surface-elevated rounded-2xl p-5">
             <h3 className="font-semibold text-gray-900 text-sm mb-1">Bench Performance</h3>
             <p className="text-xs text-gray-400 mb-5">Disposal metrics · {period}</p>
             <div className="flex flex-col gap-4">
@@ -290,7 +289,7 @@ export default function Analytics() {
         </div>
 
         {/* AI Recommendations */}
-        <div className="rounded-2xl p-5" style={{ background: "#0C0F1A", border: "1px solid rgba(255,255,255,0.05)" }}>
+        <div className="rounded-2xl border border-slate-800 bg-slate-900 p-5">
           <div className="flex items-center gap-2.5 mb-5">
             <div className="w-7 h-7 rounded-lg flex items-center justify-center" style={{ background: "rgba(99,102,241,0.2)" }}>
               <svg width="13" height="13" viewBox="0 0 13 13" fill="none">
@@ -299,7 +298,7 @@ export default function Analytics() {
             </div>
             <span className="text-xs font-bold tracking-widest" style={{ color: "#818CF8", fontSize: "10px" }}>AI DOCKET RECOMMENDATIONS</span>
           </div>
-          <div className="grid gap-4" style={{ gridTemplateColumns: "1fr 1fr 1fr" }}>
+          <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-3">
             {[
               {
                 title: "Cluster similar cases",
