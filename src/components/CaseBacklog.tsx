@@ -66,12 +66,11 @@ export default function CaseBacklog({ onNavigate }: { onNavigate: (view: string,
   };
 
   return (
-    <div className="view-enter" style={{ display: "flex", flexDirection: "column", height: "100%", background: "#F4F5F7" }}>
-      {/* Header */}
-      <div style={{ background: "white", borderBottom: "1px solid #E8EAED", padding: "14px 28px", display: "flex", alignItems: "center", justifyContent: "space-between", flexShrink: 0 }}>
+    <div className="view-enter page-shell">
+      <div className="page-head" style={{ display: "flex", alignItems: "center", justifyContent: "space-between", flexWrap: "wrap", gap: "10px" }}>
         <div>
-          <h1 style={{ fontSize: "16px", fontWeight: 700, color: "#0D1117", letterSpacing: "-0.3px", margin: 0 }}>Case Backlog</h1>
-          <p style={{ fontSize: "12px", color: "#8C929A", margin: "3px 0 0" }}>AI-prioritized · {ALL_CASES.length} cases · Delhi HC, Division Bench II</p>
+          <h1 className="text-xl font-extrabold tracking-tight text-slate-900">Case Backlog</h1>
+          <p className="mt-1 text-xs text-slate-500">AI-prioritized · {ALL_CASES.length} cases · Delhi HC, Division Bench II</p>
         </div>
         <div style={{ display: "flex", gap: "8px" }}>
           <button style={{ display: "flex", alignItems: "center", gap: "6px", padding: "7px 12px", borderRadius: "8px", background: "white", border: "1px solid #E8EAED", fontSize: "12px", color: "#6E7681", cursor: "pointer", fontWeight: 500 }}>
@@ -85,8 +84,7 @@ export default function CaseBacklog({ onNavigate }: { onNavigate: (view: string,
         </div>
       </div>
 
-      {/* Toolbar */}
-      <div style={{ background: "white", borderBottom: "1px solid #E8EAED", padding: "10px 28px", display: "flex", alignItems: "center", gap: "10px", flexShrink: 0 }}>
+      <div className="surface-elevated mx-4 mt-3 rounded-2xl border px-3 py-3 md:mx-7" style={{ display: "flex", alignItems: "center", gap: "10px", flexShrink: 0, flexWrap: "wrap" }}>
         {/* Search */}
         <div style={{ display: "flex", alignItems: "center", gap: "8px", padding: "6px 12px", borderRadius: "7px", background: "#F4F5F7", border: "1px solid #E8EAED", flex: "0 0 260px" }}>
           <svg width="13" height="13" viewBox="0 0 13 13" fill="none"><circle cx="5.5" cy="5.5" r="4" stroke="#9CA3AF" strokeWidth="1.4"/><path d="M9 9L12 12" stroke="#9CA3AF" strokeWidth="1.4" strokeLinecap="round"/></svg>
@@ -115,7 +113,7 @@ export default function CaseBacklog({ onNavigate }: { onNavigate: (view: string,
 
       {/* Bulk action bar */}
       {selected.length > 0 && (
-        <div style={{ background: "#EFF6FF", borderBottom: "1px solid #DBEAFE", padding: "9px 28px", display: "flex", alignItems: "center", gap: "10px", flexShrink: 0 }}>
+        <div style={{ background: "#EFF6FF", borderBottom: "1px solid #DBEAFE", padding: "9px 20px", margin: "12px 16px 0", borderRadius: "12px", display: "flex", alignItems: "center", gap: "10px", flexShrink: 0, flexWrap: "wrap" }}>
           <span style={{ fontSize: "12.5px", fontWeight: 600, color: "#1D4ED8" }}>{selected.length} selected</span>
           <div style={{ display: "flex", gap: "6px" }}>
             {["Reassign Judge", "Mark Urgent", "Schedule Hearing", "Export"].map(a => (
@@ -126,8 +124,8 @@ export default function CaseBacklog({ onNavigate }: { onNavigate: (view: string,
         </div>
       )}
 
-      {/* Table */}
-      <div style={{ flex: 1, overflowY: "auto" }}>
+      <div className="page-content" style={{ paddingTop: "12px" }}>
+        <div className="surface-elevated overflow-hidden">
         <table style={{ width: "100%", borderCollapse: "collapse" }}>
           <thead>
             <tr style={{ background: "#FAFBFC", borderBottom: "1px solid #E8EAED", position: "sticky", top: 0, zIndex: 1 }}>
@@ -205,6 +203,7 @@ export default function CaseBacklog({ onNavigate }: { onNavigate: (view: string,
             })}
           </tbody>
         </table>
+        </div>
       </div>
     </div>
   );

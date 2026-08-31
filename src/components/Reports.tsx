@@ -123,15 +123,14 @@ export default function Reports() {
   };
 
   return (
-    <div className="fade-in flex flex-col h-full overflow-y-auto" style={{ background: "#F8F9FB" }}>
-      {/* Header */}
-      <div className="px-8 py-4" style={{ background: "white", borderBottom: "1px solid #E5E7EB" }}>
-        <div className="flex items-center justify-between">
+    <div className="page-shell fade-in">
+      <div className="page-head">
+        <div className="flex flex-col gap-3 md:flex-row md:items-center md:justify-between">
           <div>
-            <h1 className="font-semibold text-gray-900" style={{ fontSize: "17px", letterSpacing: "-0.3px" }}>Reports</h1>
-            <p className="text-xs text-gray-400 mt-0.5">Generate, schedule, and download court reports and AI summaries</p>
+            <h1 className="text-xl font-extrabold tracking-tight text-slate-900">Reports</h1>
+            <p className="mt-1 text-xs text-slate-500">Generate, schedule, and download court reports and AI summaries</p>
           </div>
-          <button className="flex items-center gap-1.5 px-4 py-2 rounded-xl text-xs font-semibold text-white" style={{ background: "#1D2330" }}>
+          <button className="flex items-center gap-1.5 rounded-xl bg-slate-900 px-4 py-2 text-xs font-semibold text-white">
             <svg width="11" height="11" viewBox="0 0 11 11" fill="none">
               <path d="M5.5 1V10M1 5.5H10" stroke="white" strokeWidth="1.5" strokeLinecap="round"/>
             </svg>
@@ -140,16 +139,16 @@ export default function Reports() {
         </div>
       </div>
 
-      <div className="px-8 py-6 flex flex-col gap-6">
+      <div className="page-content flex flex-col gap-6">
         {/* Report types grid */}
         <div>
           <div className="text-xs font-semibold text-gray-400 mb-3 uppercase tracking-widest" style={{ fontSize: "10px" }}>Available Reports</div>
-          <div className="grid gap-4" style={{ gridTemplateColumns: "repeat(3, 1fr)" }}>
+          <div className="grid grid-cols-1 gap-4 md:grid-cols-2 xl:grid-cols-3">
             {reportTypes.map(report => (
               <div
                 key={report.id}
-                className="rounded-2xl p-5 transition-all"
-                style={{ background: "white", border: `1px solid ${generated.includes(report.id) ? report.color + "40" : "#E5E7EB"}` }}
+                className="surface-elevated rounded-2xl p-5 transition-all"
+                style={{ borderColor: generated.includes(report.id) ? report.color + "40" : "#E5E7EB" }}
               >
                 <div className="flex items-start justify-between mb-3">
                   <div className="w-9 h-9 rounded-xl flex items-center justify-center flex-shrink-0" style={{ background: report.bg }}>
@@ -188,7 +187,7 @@ export default function Reports() {
         {/* Recent reports */}
         <div>
           <div className="text-xs font-semibold text-gray-400 mb-3 uppercase tracking-widest" style={{ fontSize: "10px" }}>Recent Reports</div>
-          <div className="rounded-2xl overflow-hidden" style={{ background: "white", border: "1px solid #E5E7EB" }}>
+          <div className="surface-elevated overflow-hidden">
             {recentReports.map((r, i) => (
               <div
                 key={i}
